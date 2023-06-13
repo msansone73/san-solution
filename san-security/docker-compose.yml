@@ -9,7 +9,7 @@ services:
     networks:
       - spring-cloud-network
     environment:
-      - sansoneDB=jdbc:mysql://localhost:3306/sansone-fin
+      - sansoneDB=jdbc:mysql://msansone.com.br:3306/sansone-fin
       - sansoneDBUser=msansone
       - sansoneDBPass=senha
 
