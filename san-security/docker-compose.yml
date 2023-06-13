@@ -12,7 +12,7 @@ services:
       - sansoneDB=${sansoneDB}
       - sansoneDBUser=${sansoneDBUser}
       - sansoneDBPass=${sansoneDBPass}
-      - eurekaServerUrl=msansone.com.br
+      - eurekaServerUrl=${eurekaServerUrl}
 
 networks:
   spring-cloud-network:
