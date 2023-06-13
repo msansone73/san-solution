@@ -1,0 +1,14 @@
+version: '2'
+services:
+  eureka-server:
+    container_name: eureka-server
+    image: eureka-server:latest
+    restart: always
+    ports:
+      - 8761:8761
+    networks:
+      - spring-cloud-network
+
+networks:
+  spring-cloud-network:
+    driver: bridge     
