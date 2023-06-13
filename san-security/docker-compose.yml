@@ -10,7 +10,7 @@ services:
       - spring-cloud-network
     environment:
       - sansoneDB=${sansoneDB}
-      - sansoneDBUser=&{sansoneDBUser}
+      - sansoneDBUser=${sansoneDBUser}
       - sansoneDBPass=${sansoneDBPass}
       - eurekaServerUrl=msansone.com.br
 
