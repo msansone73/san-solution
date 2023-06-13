@@ -9,9 +9,9 @@ services:
     networks:
       - spring-cloud-network
     environment:
-      - sansoneDB=jdbc:mysql://msansone.com.br:3306/sansone-fin
-      - sansoneDBUser=msansone
-      - sansoneDBPass=senha
+      - sansoneDB=${sansoneDB}
+      - sansoneDBUser=&{sansoneDBUser}
+      - sansoneDBPass=${sansoneDBPass}
       - eurekaServerUrl=msansone.com.br
 
 networks:
