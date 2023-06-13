@@ -1,11 +1,11 @@
 version: '2'
 services:
   eureka-server:
-    container_name: eureka-server
-    image: eureka-server:latest
+    container_name: san-security-server
+    image: san-security-server:latest
     restart: always
     ports:
-      - 8761:8761
+      - 8080:8080
     networks:
       - spring-cloud-network
 
