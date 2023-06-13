@@ -12,6 +12,7 @@ services:
       - sansoneDB=jdbc:mysql://msansone.com.br:3306/sansone-fin
       - sansoneDBUser=msansone
       - sansoneDBPass=senha
+      - eurekaServerUrl=msansone.com.br
 
 networks:
   spring-cloud-network:
