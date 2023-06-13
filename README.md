@@ -18,3 +18,5 @@ export sansoneDB=jdbc:mysql://address:3306/database
 export sansoneDBUser= postgres user
 
 export sansoneDBPass= postgres password
+
+* add this line in 
