@@ -13,8 +13,8 @@ PostgreSql: relational database of san-solution
 # Configurations
 All configurations are stored in enviornment variables, follow list of vaiables:
 
-export sansoneDB=jdbc:mysql://<address>:3306/<database>
+export sansoneDB=jdbc:mysql://address:3306/database
 
-export sansoneDBUser= <postgres user>
+export sansoneDBUser= postgres user
 
-export sansoneDBPass= <postgres password>
+export sansoneDBPass= postgres password
