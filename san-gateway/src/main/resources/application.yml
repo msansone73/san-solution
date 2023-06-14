@@ -11,6 +11,6 @@ spring:
     gateway:
       routes:
       - id: sa-secure-gateway
-        uri: lb://san-security
+        uri: lb://SAN-SECURITY
         predicates:
         - Path=/api/security/**
