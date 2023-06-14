@@ -1,0 +1,16 @@
+version: '2'
+services:
+  eureka-server:
+    container_name: san-gateway-server
+    image: san-gateway-server:latest
+    restart: always
+    ports:
+      - 8000:8000
+    networks:
+      - spring-cloud-network
+    environment:
+      - eurekaServerUrl=${eurekaServerUrl}
+
+networks:
+  spring-cloud-network:
+    driver: bridge     

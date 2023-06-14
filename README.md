@@ -19,4 +19,5 @@ export sansoneDBUser= postgres user
 
 export sansoneDBPass= postgres password
 
-* add this line in 
+export eurekaServerUrl= eureka server
+

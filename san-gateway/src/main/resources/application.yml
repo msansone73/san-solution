@@ -1,0 +1,16 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eurekaServerUrl}:8761/eureka
+server:
+  port: 8000
+spring:
+  application:
+    name: san-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: sa-secure-gateway
+        uri: lb://san-security
+        predicates:
+        - Path=/api/security/**
