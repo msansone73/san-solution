@@ -5,10 +5,10 @@ Package of projects in spring boot of a microservice
 ## Content of solution 
 
 ```
-**san-eureka:** Eureka server is a Discovery server of spring cloud
-**san-gateway:** API Gateway, porta de entrada 8000
-**san-security:** rest service with authentication service for san-solutuon  
-__PostgreSql:__ relational database of san-solution
+* san-eureka: Eureka server is a Discovery server of spring cloud
+* san-gateway: API Gateway, porta de entrada 8000
+* san-security: rest service with authentication service for san-solutuon  
+* PostgreSql: relational database of san-solution
 ```
 
 ## Configurations
