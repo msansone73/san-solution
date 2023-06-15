@@ -36,6 +36,7 @@ location /api/ {
 
 ### API GAteway (exemplo de rota)
 
+```
 > spring:
 >   application:
 >     name: san-gateway
@@ -46,3 +47,4 @@ location /api/ {
 >         uri: lb://SAN-SECURITY
 >         predicates:
 >         - Path=/api/security/**
+```
