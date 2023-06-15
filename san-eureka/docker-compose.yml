@@ -8,6 +8,31 @@ services:
       - 8761:8761
     networks:
       - spring-cloud-network
+      
+  gateway-server:
+    container_name: san-gateway-server
+    image: san-gateway-server:latest
+    restart: always
+    ports:
+      - 8000:8000
+    networks:
+      - spring-cloud-network
+    environment:
+      - eurekaServerUrl=${eurekaServerUrl}
+
+  security-server:
+    container_name: san-security-server
+    image: san-security-server:latest
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - spring-cloud-network
+    environment:
+      - sansoneDB=${sansoneDB}
+      - sansoneDBUser=${sansoneDBUser}
+      - sansoneDBPass=${sansoneDBPass}
+      - eurekaServerUrl=${eurekaServerUrl}
 
 networks:
   spring-cloud-network:

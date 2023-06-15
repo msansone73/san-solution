@@ -1,6 +1,6 @@
 version: '2'
 services:
-  eureka-server:
+  security-server:
     container_name: san-security-server
     image: san-security-server:latest
     restart: always
