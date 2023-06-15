@@ -19,6 +19,8 @@ services:
       - spring-cloud-network
     environment:
       - eurekaServerUrl=${eurekaServerUrl}
+    depends_on:
+      - eureka-server 
 
   security-server:
     container_name: san-security-server
@@ -33,6 +35,10 @@ services:
       - sansoneDBUser=${sansoneDBUser}
       - sansoneDBPass=${sansoneDBPass}
       - eurekaServerUrl=${eurekaServerUrl}
+    depends_on:
+      - eureka-server
+      - gateway-server
+
 
 networks:
   spring-cloud-network:
