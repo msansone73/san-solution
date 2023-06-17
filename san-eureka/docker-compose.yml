@@ -35,6 +35,10 @@ services:
       - sansoneDBUser=${sansoneDBUser}
       - sansoneDBPass=${sansoneDBPass}
       - eurekaServerUrl=${eurekaServerUrl}
+      - springSecurityUser=${springSecurityUser}
+      - springSecurityUserPass=${springSecurityUserPass}
+      - springSecurityUserAdmin=${springSecurityUserAdmin}
+      - springSecurityUserAdminPass=${springSecurityUserAdminPass}
     depends_on:
       - eureka-server
       - gateway-server
