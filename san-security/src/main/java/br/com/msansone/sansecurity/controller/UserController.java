@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,6 @@ import br.com.msansone.sansecurity.model.User;
 import br.com.msansone.sansecurity.model.dto.UserLoginRequestDTO;
 import br.com.msansone.sansecurity.model.dto.UserResponseDTO;
 import br.com.msansone.sansecurity.service.UserService;
-import br.com.msansone.sansecurity.utils.HashUtils;
 
 @RestController
 @RequestMapping("/api/security")
@@ -23,6 +23,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
 	public ResponseEntity<User> addUser(
 			@RequestBody User user){
