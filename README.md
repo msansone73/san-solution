@@ -15,10 +15,17 @@ Package of projects in spring boot of a microservice
 All configurations are stored in enviornment variables, follow list of vaiables:
 
 ```
+#Data base conextion
 export sansoneDB=jdbc:mysql://address:3306/database
 export sansoneDBUser= postgres user
 export sansoneDBPass= postgres password
 export eurekaServerUrl= eureka server
+
+#Spring Security credentials
+export springSecurityUser=user
+export springSecurityUserPass=your password
+export springSecurityUserAdmin=admin
+export springSecurityUserAdminPass=your password
 ````
 
 ## Rotas
