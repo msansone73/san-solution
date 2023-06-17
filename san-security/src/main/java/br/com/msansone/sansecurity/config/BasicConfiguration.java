@@ -47,17 +47,6 @@ public class BasicConfiguration {
     @Bean
     UserDetailsService userDetailsService() {
     	
-    	System.out.println(String.format("""
-    			springSecurityUser = %s
-    			springSecurityUserPass = %s
-    			springSecurityUserAdmin = %s
-    			springSecurityUserAdoinPass = %s
-    			""", 
-    			springSecurityUser, 
-    			springSecurityUserPass, 
-    			springSecurityUserAdmin,
-    			springSecurityUserAdminPass));
-    	
     	UserDetails cliente = User.builder()
     			.username(springSecurityUser)
     			.password(passwordEncoder().encode(springSecurityUserPass))
