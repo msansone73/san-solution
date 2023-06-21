@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import br.com.msansone.sansecurity.exceptions.UserExistsException;
 import br.com.msansone.sansecurity.model.User;
 import br.com.msansone.sansecurity.repository.UserRepository;
 import br.com.msansone.sansecurity.utils.HashUtils;
@@ -20,7 +21,10 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 	
 	@Override
-	public User save(User user){
+	public User save(User user) throws UserExistsException {
+		if (existsEmail(user)) {
+			throw new UserExistsException("Email já cadastrado!");
+		}
 		if (user.getDateCreate()==null) {
 			user.setDateCreate(LocalDate.now());
 		}
@@ -28,6 +32,10 @@ public class UserServiceImpl implements UserService {
 		user.setPass(HashUtils.createHash(user.getPass()));
 		return userRepository.save(user); 
 		
+	}
+
+	private boolean existsEmail(User user) {
+		return  !CollectionUtils.isEmpty(userRepository.findAllByEmail(user.getEmail()));
 	}
 
 	@Override
