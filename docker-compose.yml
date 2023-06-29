@@ -1,0 +1,57 @@
+version: '2'
+services:
+  eureka-server:
+    container_name: eureka-server
+    image: eureka-server:latest
+    restart: always
+    ports:
+      - 8761:8761
+    networks:
+      - spring-cloud-network
+    volumes:
+      - app-log
+
+  gateway-server:
+    container_name: san-gateway-server
+    image: san-gateway-server:latest
+    restart: always
+    ports:
+      - 8000:8000
+    networks:
+      - spring-cloud-network
+    environment:
+      - eurekaServerUrl=${eurekaServerUrl}
+    depends_on:
+      - eureka-server
+    volumes:
+      - app-log
+
+  security-server:
+    container_name: san-security-server
+    image: san-security-server:latest
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - spring-cloud-network
+    environment:
+      - sansoneDB=${sansoneDB}
+      - sansoneDBUser=${sansoneDBUser}
+      - sansoneDBPass=${sansoneDBPass}
+      - eurekaServerUrl=${eurekaServerUrl}
+      - springSecurityUser=${springSecurityUser}
+      - springSecurityUserPass=${springSecurityUserPass}
+      - springSecurityUserAdmin=${springSecurityUserAdmin}
+      - springSecurityUserAdminPass=${springSecurityUserAdminPass}
+    depends_on:
+      - eureka-server
+      - gateway-server
+    volumes:
+      - app-log
+
+networks:
+  spring-cloud-network:
+    driver: bridge
+
+volumes:
+  app-log: ./log:./log
