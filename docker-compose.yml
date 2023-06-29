@@ -9,7 +9,7 @@ services:
     networks:
       - spring-cloud-network
     volumes:
-      - ./logs:/log
+      - ./logs/eureka:/log
 
   gateway-server:
     container_name: san-gateway-server
@@ -24,7 +24,7 @@ services:
     depends_on:
       - eureka-server
     volumes:
-      - ./logs:/log
+      - ./logs/gateway:/log
 
   security-server:
     container_name: san-security-server
@@ -47,7 +47,7 @@ services:
       - eureka-server
       - gateway-server
     volumes:
-      - ./logs:/log
+      - ./logs/security:/log
 
 networks:
   spring-cloud-network:
