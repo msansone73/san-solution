@@ -2,6 +2,8 @@ package br.com.msansone.sansecurity.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,6 +22,8 @@ import br.com.msansone.sansecurity.service.UserService;
 @RestController
 @RequestMapping("/api/security")
 public class UserController {
+	
+	Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	UserService userService;
@@ -43,6 +47,7 @@ public class UserController {
 	
 	@GetMapping
 	public List<UserResponseDTO> getAll(){
+		logger.error("GetAll OK.");
 		List<User> users = userService.getAll();
 		List<UserResponseDTO> usersDTO = users.stream().map(u -> convertUserDTO(u,null)).toList();
 		return usersDTO;

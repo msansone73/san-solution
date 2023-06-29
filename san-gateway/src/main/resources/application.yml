@@ -14,3 +14,21 @@ spring:
         uri: lb://SAN-SECURITY
         predicates:
         - Path=/api/security/**
+
+
+
+#Log
+#logging.level.br.com.msansone=trace
+#logging.file.name=../logs/security.log
+#logging.pattern.file= %d [%level] %c{1.} {%t} %m%n
+#logging.pattern.console== %d [%level] %c{1.} {%t} %m%n
+
+logging:
+  level:
+    '[br.com.msansone]': trace
+  file:
+    name: ../logs/gateway.log
+  pattern:
+    console: '%d [%level] %c{1.} {%t} %m%n'
+    file: '%d [%level] %c{1.} {%t} %m%n'
+    
