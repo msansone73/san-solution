@@ -50,8 +50,8 @@ services:
       - shared-log-volume:/log
 
 networks:
-  spring-cloud-network: 
+  spring-cloud-network:
     driver: bridge
 
 volumes:
-  shared-log-volume: ./logs
+  shared-log-volume:
