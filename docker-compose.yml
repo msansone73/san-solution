@@ -8,11 +8,11 @@ services:
       - 8761:8761
     networks:
       - spring-cloud-network
-  #    volumes:
-  #      - ./logs/eureka:/log
+    volumes:
+      - ./logs:/log
 
   gateway-server:
-    container_name: san-gateway-server
+    container_name: gateway-server
     image: san-gateway-server:latest
     restart: always
     ports:
@@ -23,11 +23,11 @@ services:
       - eurekaServerUrl=${eurekaServerUrl}
     depends_on:
       - eureka-server
-  #    volumes:
-  #      - ./logs/gateway:/log
+    volumes:
+      - ./logs:/log
 
   security-server:
-    container_name: san-security-server
+    container_name: security-server
     image: san-security-server:latest
     restart: always
     ports:
