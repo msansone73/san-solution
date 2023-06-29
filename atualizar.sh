@@ -18,5 +18,6 @@ mvn package
 docker rmi -f security-server
 docker build --tag=security-server:latest .
 echo -------- LEVANTA DOCKER COMPOSE --------------------
+cd ..
 docker-compose up --d
 echo -------- CONCLUIDO COM SUCESSO --------------------
