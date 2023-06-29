@@ -27,7 +27,7 @@ logging:
   level:
     '[br.com.msansone]': trace
   file:
-    name: ../logs/gateway.log
+    name: /log/gateway.log
   pattern:
     console: '%d [%level] %c{1.} {%t} %m%n'
     file: '%d [%level] %c{1.} {%t} %m%n'
