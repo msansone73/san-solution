@@ -52,6 +52,3 @@ services:
 networks:
   spring-cloud-network:
     driver: bridge
-
-volumes:
-  app-log: 
