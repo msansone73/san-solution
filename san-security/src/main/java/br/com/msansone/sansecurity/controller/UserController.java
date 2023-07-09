@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ import br.com.msansone.sansecurity.model.dto.UserResponseDTO;
 import br.com.msansone.sansecurity.service.UserService;
 @RestController
 @RequestMapping("/api/security")
+@CrossOrigin(origins="*")
 public class UserController {
 	
 	Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -33,7 +35,7 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody UserLoginRequestDTO useLogin){
-		
+		logger.debug("useLogin="+useLogin.email()+" - "+useLogin.pass());
 		User user = userService.login(useLogin.email(), useLogin.pass());
 
 		if (user==null) {
