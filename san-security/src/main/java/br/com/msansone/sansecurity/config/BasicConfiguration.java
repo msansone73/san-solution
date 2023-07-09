@@ -53,7 +53,10 @@ public class BasicConfiguration {
 */
 
         http.csrf((csrf)-> csrf.disable())
-     	.cors(  (cors) -> cors.disable());
+     	.cors(  (cors) -> cors.disable())
+     	.authorizeHttpRequests( 
+    			(autoriza) -> autoriza.anyRequest().authenticated()
+    			).httpBasic(Customizer.withDefaults());
 
         return http.build();
     }
