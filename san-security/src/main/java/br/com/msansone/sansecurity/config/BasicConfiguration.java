@@ -47,10 +47,14 @@ public class BasicConfiguration {
         
        */
 
+    	/*
         http.csrf((csrf)-> csrf.disable())
      	.cors(  (cors) -> cors.configurationSource(corsConfigurationSource()));
+*/
 
-    	
+        http.csrf((csrf)-> csrf.disable())
+     	.cors(  (cors) -> cors.disable());
+
         return http.build();
     }
 
