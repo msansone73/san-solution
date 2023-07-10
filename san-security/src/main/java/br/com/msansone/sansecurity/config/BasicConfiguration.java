@@ -51,14 +51,17 @@ public class BasicConfiguration {
         http.csrf((csrf)-> csrf.disable())
      	.cors(  (cors) -> cors.configurationSource(corsConfigurationSource()));
 */
-
+/*
         http.csrf((csrf)-> csrf.disable())
      	.cors(  (cors) -> cors.disable())
      	.authorizeHttpRequests( 
     			(autoriza) -> autoriza.anyRequest().authenticated()
     			).httpBasic(Customizer.withDefaults());
+*/
 
-        return http.build();
+        http.csrf((csrf)-> csrf.disable());
+
+    	return http.build();
     }
 
     @Bean

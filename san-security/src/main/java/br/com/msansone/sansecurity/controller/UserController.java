@@ -65,7 +65,7 @@ public class UserController {
 	}
 	
 	
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
 	public ResponseEntity<?> addUser(
 			@RequestBody User user){
