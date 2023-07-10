@@ -38,29 +38,6 @@ public class BasicConfiguration {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     
-        /*
-         http.csrf((csrf)-> csrf.disable())
-         	.cors(  (cors) -> cors.configurationSource(corsConfigurationSource()))
-        	.authorizeHttpRequests( 
-        			(autoriza) -> autoriza.anyRequest().authenticated()
-        			).httpBasic(Customizer.withDefaults());
-        
-       */
-
-    	/*
-        http.csrf((csrf)-> csrf.disable())
-     	.cors(  (cors) -> cors.configurationSource(corsConfigurationSource()));
-*/
-/*
-        http.csrf((csrf)-> csrf.disable())
-     	.cors(  (cors) -> cors.disable())
-     	.authorizeHttpRequests( 
-    			(autoriza) -> autoriza.anyRequest().authenticated()
-    			).httpBasic(Customizer.withDefaults());
-*/
-
-        //http.csrf((csrf)-> csrf.disable());
-
     	http.csrf((csrf)-> csrf.disable())        	
     		.authorizeHttpRequests( 
     			(autoriza) -> autoriza.anyRequest().authenticated()
