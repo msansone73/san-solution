@@ -61,6 +61,12 @@ public class BasicConfiguration {
 
         //http.csrf((csrf)-> csrf.disable());
 
+    	http.csrf((csrf)-> csrf.disable())        	
+    		.authorizeHttpRequests( 
+    			(autoriza) -> autoriza.anyRequest().authenticated()
+    			).httpBasic(Customizer.withDefaults());
+
+    	
     	return http.build();
     }
 
