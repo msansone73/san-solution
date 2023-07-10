@@ -59,8 +59,7 @@ public class BasicConfiguration {
     			).httpBasic(Customizer.withDefaults());
 */
 
-        http.csrf((csrf)-> csrf.disable())
-     	.cors(  (cors) -> cors.configurationSource(corsConfigurationSource()));
+        //http.csrf((csrf)-> csrf.disable());
 
     	return http.build();
     }
@@ -91,6 +90,7 @@ public class BasicConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
+        
         configuration.addAllowedOrigin("*"); // Adicione o domínio do seu site Angular
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
@@ -99,6 +99,8 @@ public class BasicConfiguration {
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+        
+        
         
         return source;
     }
