@@ -25,7 +25,7 @@ import br.com.msansone.sansecurity.model.dto.UserResponseDTO;
 import br.com.msansone.sansecurity.service.UserService;
 @RestController
 @RequestMapping("/api/security")
-@CrossOrigin(origins = "http://localhost:4200/*", allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 	
 	Logger logger = LoggerFactory.getLogger(UserController.class);
