@@ -15,13 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-
-import static org.springframework.security.config.Customizer.withDefaults;
-
 
 
 @Configuration
@@ -43,12 +36,11 @@ public class BasicConfiguration {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    
-    	http.csrf((csrf)-> csrf.disable())
-    		.authorizeHttpRequests( 
+      	http.csrf((csrf)-> csrf.disable())
+      	.cors(Customizer.withDefaults())
+      	.authorizeHttpRequests( 
     			(autoriza) -> autoriza.anyRequest().authenticated()
     			).httpBasic(Customizer.withDefaults());
-
     	
     	return http.build();
     }
