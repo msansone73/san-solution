@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.msansone.sansecurity.exceptions.UserExistsException;
@@ -24,7 +25,6 @@ import br.com.msansone.sansecurity.model.dto.UserResponseDTO;
 import br.com.msansone.sansecurity.service.UserService;
 @RestController
 @RequestMapping("/api/security")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 	
 	Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -32,6 +32,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody UserLoginRequestDTO useLogin){
 		logger.debug("useLogin="+useLogin.email()+" - "+useLogin.pass());
