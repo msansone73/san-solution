@@ -8,20 +8,23 @@ spring:
   application:
     name: san-gateway
   cloud:
-    gateway:
+    gateway:       
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+        
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"            
+
       routes:
       - id: sa-secure-gateway
         uri: lb://SAN-SECURITY
         predicates:
         - Path=/api/security/**
 
-
-
-#Log
-#logging.level.br.com.msansone=trace
-#logging.file.name=../logs/security.log
-#logging.pattern.file= %d [%level] %c{1.} {%t} %m%n
-#logging.pattern.console== %d [%level] %c{1.} {%t} %m%n
 
 logging:
   level:
