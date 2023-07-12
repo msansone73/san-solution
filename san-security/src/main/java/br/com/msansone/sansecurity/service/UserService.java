@@ -10,7 +10,8 @@ public interface UserService {
 
 	User save(User user) throws UserExistsException;
 
-	List<User> getAll();
+
+	List<User> getAll(boolean justEnabed);
 
 	User login(String email, String pass);
 
@@ -20,4 +21,5 @@ public interface UserService {
 
 	User getById(Long id);
 
+	User disableUser(Long id);
 }

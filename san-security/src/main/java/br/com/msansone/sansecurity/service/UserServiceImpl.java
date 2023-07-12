@@ -42,8 +42,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getAll() {
-		return userRepository.findAll();
+	public List<User> getAll(boolean justEnabed) {
+		if (justEnabed) {
+            return userRepository.findAllByEnable(Boolean.TRUE);
+        } else {
+            return userRepository.findAll();
+        }
 	}
 	
 
@@ -52,6 +56,15 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findById(id).orElse(null);
 	}
 
+	@Override
+	public User disableUser(Long id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user!=null) {
+            user.setEnable(false);
+            userRepository.save(user);
+        }
+        return user;
+    }
 
 	@Override
 	public User login(String email, String pass) {
@@ -59,16 +72,16 @@ public class UserServiceImpl implements UserService {
 		List<User> users = userRepository.findAllByEmail(email);
 		
 		if (CollectionUtils.isEmpty(users)) {
-			System.out.println(String.format("email %s não encontrado", email));
+			logger.info(String.format("email %s não encontrado", email));
 			return null;			
 		}
 		if (users.size()>1) {
-			System.out.println(String.format("encontrado mais de uma corrência do email %s.", email));
+			logger.info(String.format("encontrado mais de uma corrência do email %s.", email));
 			return null;			
 		}
 		
 		if (!HashUtils.validatePass(pass, users.get(0).getPass())) {
-			System.out.println(String.format("email / pass inválida:  %s/%s.", email, pass));
+			logger.info(String.format("email / pass inválida:  %s/%s.", email, pass));
 			return null;			
 		}
 		

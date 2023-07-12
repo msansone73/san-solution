@@ -11,8 +11,13 @@ public class CorsConfiguration {
 	@Bean
 	WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**");
+
+			public void addCorsMappings(CorsRegistry corsRegistry) {
+				corsRegistry.addMapping("/**")
+					.allowedOrigins("*")
+					.allowedMethods("*")
+					.allowedHeaders("*")
+					.maxAge(3600);
 			}
 		};
 		
