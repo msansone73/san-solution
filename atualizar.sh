@@ -17,6 +17,11 @@ cd ../san-security
 mvn package
 docker rmi -f security-server
 docker build --tag=security-server:latest .
+echo -------- MAVEN  stock--------------------
+cd ../san-stock
+mvn package
+docker rmi -f stock-server
+docker build --tag=stock-server:latest .
 echo -------- LEVANTA DOCKER COMPOSE --------------------
 cd ..
 docker-compose up --d

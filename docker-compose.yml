@@ -49,6 +49,29 @@ services:
     volumes:
       - ./logs:/log
 
+  stock-server:
+    container_name: stock-server
+    image: stock-server:latest
+    restart: always
+    ports:
+      - 8090:8090
+    networks:
+      - spring-cloud-network
+    environment:
+      - sansoneDB=${sansoneDB}
+      - sansoneDBUser=${sansoneDBUser}
+      - sansoneDBPass=${sansoneDBPass}
+      - eurekaServerUrl=${eurekaServerUrl}
+      - springSecurityUser=${springSecurityUser}
+      - springSecurityUserPass=${springSecurityUserPass}
+      - springSecurityUserAdmin=${springSecurityUserAdmin}
+      - springSecurityUserAdminPass=${springSecurityUserAdminPass}
+    depends_on:
+      - eureka-server
+      - gateway-server
+    volumes:
+      - ./logs:/log
+
 networks:
   spring-cloud-network:
     driver: bridge
