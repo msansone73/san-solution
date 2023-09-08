@@ -24,7 +24,10 @@ spring:
         uri: lb://SAN-SECURITY
         predicates:
         - Path=/api/security/**
-
+      - id: sa-stock-gateway
+        uri: lb://SAN-STOCK
+        predicates:
+        - Path=/api/stock/**
 
 logging:
   level:

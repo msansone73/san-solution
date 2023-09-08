@@ -26,7 +26,14 @@ public class Stock {
     public Stock() {
     }
 
-    public Stock(String ticker, String name, String valorAtual, String dividendYield, String pvp, String valorizacao12M, String pl, List<Dividend> dividends) {
+    public Stock(String ticker,
+                 String name,
+                 String valorAtual,
+                 String dividendYield,
+                 String pvp,
+                 String valorizacao12M,
+                 String pl,
+                 List<Dividend> dividends) {
         this.ticker = ticker;
         this.name = name;
         this.valorAtual = valorAtual;

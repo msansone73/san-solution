@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.text.ParseException;
 
 @RestController
-@RequestMapping("/stock")
+@RequestMapping("/api/stock")
 public class StockController {
 
     @Autowired StockResearch stockResearch;
@@ -25,4 +25,5 @@ public class StockController {
         Stock ret = stockResearch.getStockInfo(stkType, stock);
         return ResponseEntity.ok(ret);
     }
+
 }
