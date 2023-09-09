@@ -38,7 +38,7 @@ public class StockResearchI10 implements StockResearch {
             stockInfo.setPvp(getValoresFromDoc(doc,"_card vp"));
             stockInfo.setDividendYield(getValoresFromDoc(doc,"_card dy"));
             stockInfo.setPl(getValoresFromDoc(doc,"_card val"));
-            stockInfo.setValorizacao12M(getValoresFromDoc(doc,"_card pl"));
+            stockInfo.setValorizacao12M(getValoresFromTitle(doc,"Valorização (12M)"));
             stockInfo.setDividends(getDividendsFromDoc(doc));
 
             return stockInfo;
@@ -59,6 +59,10 @@ public class StockResearchI10 implements StockResearch {
     }
     private static String getValoresFromDoc(Document doc, String title) {
         String valor = doc.getElementsByClass(title).get(0).getElementsByClass("_card-body").get(0).text();
+        return valor;
+    }
+    private static String getValoresFromTitle(Document doc, String title) {
+        String valor= doc.getElementsByAttributeValue("title",title).get(0).parent().parent().parent().getElementsByClass("_card-body").select("span").text();
         return valor;
     }
     private List<Dividend> getDividendsFromDoc(Document doc) throws ParseException {
