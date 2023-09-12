@@ -6,6 +6,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -21,12 +22,18 @@ import java.util.stream.Collectors;
 public class StockResearchI10 implements StockResearch {
 
     private final String URL_BASE= "https://investidor10.com.br/%s/%s/";
+    @Autowired
+    StockRepository stockRepository;
 
     public Stock getStockInfo(
             String stockType,
             String stock
     ){
+
+
+
         try {
+
             Stock stockInfo = new Stock();
 
             String url= String.format(URL_BASE,stockType,stock);
@@ -39,7 +46,7 @@ public class StockResearchI10 implements StockResearch {
             stockInfo.setDividendYield(getValoresFromDoc(doc,"_card dy"));
             stockInfo.setPl(getValoresFromDoc(doc,"_card val"));
             stockInfo.setValorizacao12M(getValoresFromTitle(doc,"Valorização (12M)"));
-            stockInfo.setDividends(getDividendsFromDoc(doc));
+            stockInfo.setDividends(getDividendsFromDoc(doc, stockInfo.getTicker()));
 
             return stockInfo;
         } catch (IOException | ParseException e) {
@@ -65,7 +72,7 @@ public class StockResearchI10 implements StockResearch {
         String valor= doc.getElementsByAttributeValue("title",title).get(0).parent().parent().parent().getElementsByClass("_card-body").select("span").text();
         return valor;
     }
-    private List<Dividend> getDividendsFromDoc(Document doc) throws ParseException {
+    private List<Dividend> getDividendsFromDoc(Document doc, String ticker) throws ParseException {
         List<Dividend> dividends = new ArrayList<>();
 
         //Document doc = stockRepository.getStockDocument(stockTypes, stock);
@@ -79,6 +86,7 @@ public class StockResearchI10 implements StockResearch {
         SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
         for (Element el: element_even) {
             Dividend div = new Dividend(
+                    ticker,
                     el.getElementsByClass("text-center").get(0).text(),
                     dateFormat.parse(el.getElementsByClass("text-center").get(1).text()),
                     dateFormat.parse(el.getElementsByClass("text-center").get(2).text()),
@@ -88,6 +96,7 @@ public class StockResearchI10 implements StockResearch {
         }
         for (Element el: element_odd) {
             Dividend div = new Dividend(
+                    ticker,
                     el.getElementsByClass("text-center").get(0).text(),
                     dateFormat.parse(el.getElementsByClass("text-center").get(1).text()),
                     dateFormat.parse(el.getElementsByClass("text-center").get(2).text()),

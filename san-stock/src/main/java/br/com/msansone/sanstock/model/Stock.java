@@ -1,8 +1,8 @@
 package br.com.msansone.sanstock.model;
 
 import jakarta.persistence.*;
-import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 @Entity
 public class Stock {
@@ -19,21 +19,16 @@ public class Stock {
     String valorizacao12M;
     String pl;
 
-    @OneToMany
-    @JoinColumn(name = "stock_id") //A referência da tabela "Dividend" para a tabela "St)
+    LocalDateTime lastUpdate =  LocalDateTime.now();
+
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     List<Dividend> dividends;
 
     public Stock() {
     }
 
-    public Stock(String ticker,
-                 String name,
-                 String valorAtual,
-                 String dividendYield,
-                 String pvp,
-                 String valorizacao12M,
-                 String pl,
-                 List<Dividend> dividends) {
+    public Stock(Long id, String ticker, String name, String valorAtual, String dividendYield, String pvp, String valorizacao12M, String pl, LocalDateTime lastUpdate, List<Dividend> dividends) {
+        this.id = id;
         this.ticker = ticker;
         this.name = name;
         this.valorAtual = valorAtual;
@@ -41,7 +36,16 @@ public class Stock {
         this.pvp = pvp;
         this.valorizacao12M = valorizacao12M;
         this.pl = pl;
+        this.lastUpdate = lastUpdate;
         this.dividends = dividends;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTicker() {
@@ -98,6 +102,14 @@ public class Stock {
 
     public void setPl(String pl) {
         this.pl = pl;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     public List<Dividend> getDividends() {

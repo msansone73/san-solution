@@ -2,6 +2,7 @@ package br.com.msansone.sanstock.controller;
 
 import br.com.msansone.sanstock.model.Stock;
 import br.com.msansone.sanstock.repository.StockResearch;
+import br.com.msansone.sanstock.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +16,15 @@ import java.text.ParseException;
 @RequestMapping("/api/stock")
 public class StockController {
 
-    @Autowired StockResearch stockResearch;
+    @Autowired
+    StockService stockService;
 
     @GetMapping("/{stkType}/{stock}")
     public ResponseEntity<Stock> getStock(
             @PathVariable String stock,
             @PathVariable String stkType
     ) {
-        Stock ret = stockResearch.getStockInfo(stkType, stock);
+        Stock ret = stockService.findStock(stkType, stock);
         return ResponseEntity.ok(ret);
     }
 
