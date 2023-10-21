@@ -8,9 +8,6 @@ import java.util.List;
 public class Stock {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-
     String ticker;
     String name;
     String valorAtual;
@@ -28,7 +25,6 @@ public class Stock {
     }
 
     public Stock(Long id, String ticker, String name, String valorAtual, String dividendYield, String pvp, String valorizacao12M, String pl, LocalDateTime lastUpdate, List<Dividend> dividends) {
-        this.id = id;
         this.ticker = ticker;
         this.name = name;
         this.valorAtual = valorAtual;
@@ -40,13 +36,6 @@ public class Stock {
         this.dividends = dividends;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTicker() {
         return ticker;

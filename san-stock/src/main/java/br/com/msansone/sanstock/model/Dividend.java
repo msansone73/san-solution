@@ -12,7 +12,7 @@ public class Dividend {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private  String stock;
+    private  String ticker;
     private String type;
     private Date dateCom;
     private Date datePag;
@@ -21,8 +21,8 @@ public class Dividend {
     public Dividend() {
     }
 
-    public Dividend(String stock, String type, Date dateCom, Date datePag, BigDecimal valor) {
-        this.stock = stock;
+    public Dividend(String ticker, String type, Date dateCom, Date datePag, BigDecimal valor) {
+        this.ticker = ticker;
         this.type = type;
         this.dateCom = dateCom;
         this.datePag = datePag;
@@ -37,12 +37,12 @@ public class Dividend {
         this.id = id;
     }
 
-    public String getStock() {
-        return stock;
+    public String getTicker() {
+        return ticker;
     }
 
-    public void setStock(String stock) {
-        this.stock = stock;
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
     }
 
     public String getType() {
@@ -77,3 +77,4 @@ public class Dividend {
         this.valor = valor;
     }
 }
+
