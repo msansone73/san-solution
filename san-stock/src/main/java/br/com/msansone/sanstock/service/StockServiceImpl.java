@@ -35,6 +35,10 @@ public class StockServiceImpl implements  StockService{
 
     private Stock getStockFromWs(String tickerType, String ticker) {
         Stock stockws = stockResearch.getStockInfo(tickerType, ticker);
+        Optional<Stock> sto = stockRepository.findByTicker(stockws.getTicker());
+        if (sto.isPresent()) {
+            stockRepository.delete(sto.get());
+        }
         stockRepository.save(stockws);
         return stockws;
     }
